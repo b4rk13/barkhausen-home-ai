@@ -1,62 +1,75 @@
-# How Kiro Works
+# How Kiro Works — Barkhausen Home AI
 
-Kiro is an AI assistant that helps you build features systematically through a structured spec-driven development process.
+Kiro is a spec-driven development process adapted from Amazon's internal workflow. It ensures features are well-planned before implementation begins — especially important for a household system where half-built features cause real friction for real people.
+
+---
 
 ## Core Philosophy
 
-Instead of jumping straight into code, Kiro guides you through three phases:
-1. **Requirements** - What needs to be built
-2. **Design** - How it will be built  
-3. **Tasks** - Step-by-step implementation plan
+Don't build until the plan is approved. Three phases, each requiring explicit sign-off before moving forward:
 
-This ensures every feature is well-planned before implementation begins.
+1. **Requirements** — What needs to be built and why
+2. **Design** — How it will be built (config, skills, hardware, wiring)
+3. **Tasks** — Step-by-step implementation checklist
 
-## The Spec Structure
+---
 
-Each feature gets its own folder in `.kiro/specs/{feature-name}/` containing:
+## Spec Structure
 
-- `requirements.md` - User stories and acceptance criteria
-- `design.md` - Technical architecture and implementation approach
-- `tasks.md` - Actionable coding checklist
+Each feature gets its own folder:
 
-## Workflow Process
+```
+.kiro/specs/{feature-name}/
+├── requirements.md
+├── design.md
+└── tasks.md
+```
 
-### Phase 1: Requirements Gathering
-- I create initial requirements based on your feature idea
-- Uses user stories format: "As a [role], I want [feature], so that [benefit]"
-- Includes acceptance criteria in EARS format (Easy Approach to Requirements Syntax)
-- Example: "WHEN user clicks submit THEN system SHALL validate all fields"
-- We iterate until you approve the requirements
+Templates for all three live in `.kiro/kiro-system-templates/`.
 
-### Phase 2: Design Documentation  
-- I research and create a comprehensive design.md
-- Covers architecture, components, data models, error handling, testing strategy
-- May include Mermaid diagrams for visual representation
-- Addresses all requirements from the previous phase
-- We iterate until you approve the design
+---
 
-### Phase 3: Task Planning
-- I break down the design into actionable coding tasks in tasks.md
-- Creates numbered checklist items (1.1, 1.2, etc.)
-- Each task references specific requirements
-- Focuses only on code implementation activities
-- Prioritizes incremental, testable progress
-- We iterate until you approve the task list
+## Workflow
 
-## Key Features
+### Phase 1 — Requirements
+- Hermes drafts `requirements.md` from your feature description
+- Covers user stories (David / Bridget / household), acceptance criteria, scope, dependencies, risks
+- **You approve before moving on** — iterate until it's right
 
-- **Iterative Approval** - You must explicitly approve each document before moving to the next
-- **Requirement Traceability** - Tasks link back to specific requirements
-- **Incremental Development** - Tasks build on each other progressively
-- **Code-Focused** - Tasks only include activities a coding agent can execute
+### Phase 2 — Design
+- Hermes drafts `design.md` covering system components: Hermes config, HA automations, n8n workflows, hardware, skills, credentials
+- Includes a verification checklist (no formal test suite — just clear manual checks)
+- **You approve before moving on**
 
-## Task Execution
+### Phase 3 — Tasks
+- Hermes drafts `tasks.md` as a numbered, checkboxable implementation plan
+- Tasks are concrete and sequential — one deliverable each
+- **You approve before implementation begins**
 
-Once your spec is complete, you can execute tasks by:
-- Opening the `tasks.md` file
-- Clicking "Start task" next to individual task items
-- I'll implement one task at a time, stopping for your review between tasks
+### Implementation
+- Work through tasks one at a time
+- Stop for review between tasks (or batches, your call)
+- Update task checkboxes as work completes
+- Commit spec files alongside implementation changes
 
-## Getting Started
+---
 
-To begin a new feature spec, simply describe your idea and I'll guide you through the three-phase process. For existing specs, I can help review, update any phase, or execute implementation tasks as needed.
+## When to Use Kiro
+
+Use Kiro for any feature that:
+- Touches more than one system (e.g., Hermes + HA + n8n)
+- Requires hardware setup
+- Affects both David and Bridget
+- Will take more than one session to complete
+
+Skip Kiro for quick one-offs — a single skill tweak, a memory update, a minor HA config change.
+
+---
+
+## Key Behaviors for Hermes
+
+- **Always check `.kiro/specs/` first** when asked to build something — a spec may already exist
+- **Suggest Kiro** when a feature request is non-trivial
+- **Don't skip phases** — requirements before design, design before tasks, tasks before implementation
+- **Note adapted scope** — templates are for configuration, skills, hardware, and light coding; not traditional software engineering artifacts (no TypeScript interfaces, unit test percentages, etc.)
+- **Keep traceability** — task items should reference the requirement they satisfy
