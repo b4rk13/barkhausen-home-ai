@@ -121,10 +121,24 @@ Barkhausen Home AI
 - [ ] Expand to living room, bedroom
 
 ### Phase 5 — Recipes, Music, Proactive
+
+> **Prerequisite:** Add `SKYLIGHT_EMAIL` and `SKYLIGHT_PASSWORD` to `~/.hermes/.env` on LXC before starting Skylight skill work.
+
 - [ ] Port Skylight Calendar skills from Claude Cowork (Playwright-based: add recipe, add to meal plan, add groceries to shopping list — no Skylight API exists)
 - [ ] Room-targeted Spotify playback
 - [ ] Proactive morning briefing with weather + calendar
 - [ ] Camera-triggered delivery notifications
+
+### Phase 6 — Infrastructure Hardening
+- [ ] 1Password CLI (`op`) on LXC — service account setup, migrate credentials out of `.env`
+- [ ] Evaluate additional integrations needing credentials (Google, Spotify already handled)
+
+
+**Current:** Skylight (and future service) credentials stored in `~/.hermes/.env` on the LXC. Simple, access-controlled to root, good enough for home use.
+
+**Long-term:** Migrate to 1Password CLI (`op`). Install `op` on LXC, create a service account in 1Password Personal vault, store only the service account token in `.env`. Skills call `op read "op://vault/item/field"` at runtime. Single source of truth, credentials rotate in one place.
+
+Note: 1Password Connect Server is Teams/Business only — not available on Personal plan. The `op` CLI is the right path for personal accounts.
 
 ---
 
