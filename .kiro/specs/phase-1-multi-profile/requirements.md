@@ -53,10 +53,25 @@ Care Bot (Bridget's cancer treatment assistant) is a separate system and is expl
 
 ## 4. Scope
 
+### Shared Household Context — Content Areas
+
+The shared context file covers:
+
+- **Family members**: Kids' names, ages, schools
+- **Key locations**: School address, swim class, regular activity venues, nearby landmarks
+- **Key contacts**: Keira's nanny, babysitters, grandparents, school friends/parents
+  - > **Open decision**: Where does the contacts database live? Options: Notion (already integrated), Google Contacts (accessible via Google Workspace skill), HA (possible but not ideal for people). Recommendation: Notion — already wired, queryable, easy to maintain. Contacts referenced from shared context by name, full detail in Notion.
+- **Dietary / health preferences**:
+  - Bridget: strict cancer treatment diet (specifics to be seeded)
+  - David: high-cholesterol diet considerations
+- **Shared household preferences**: Music, temperature, routines, etc.
+- **Home layout**: Room names, key devices per room
+
 ### In Scope
 - Creating the `bridget` Hermes profile
 - Wiring Bridget's Telegram account to her profile in the gateway config
-- Defining and seeding the shared household context file
+- Defining and seeding the shared household context file (family, locations, dietary, layout)
+- Notion as the contacts database (Phase 1 stub — full contacts population can be ongoing)
 - Mechanism for both profiles to read shared context
 - Seeding Bridget's USER.md with baseline personal context
 
