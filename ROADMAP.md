@@ -97,7 +97,13 @@ Barkhausen Home AI
 ### Phase 2 — Family Calendar & Household Tasks
 *Goal: "What's on this week?" works for either of them.*
 
-- [ ] Connect personal Google Calendar (separate from Care Bot's treatment calendar)
+> **Architecture note (needs design decision before implementation):**
+> Currently David and Bridget have separate Google Calendars. Skylight Calendar displays both + kids-related events added directly to Skylight. This works visually but is fragmented for AI use.
+> Proposed direction: create a shared Family calendar in Google, use Skylight's per-person profile feature to show whose events are whose. Need to decide: migrate existing calendars, or layer the family calendar on top? Spec this out in Phase 2 Kiro process.
+
+- [ ] Design family calendar architecture (shared Google Calendar vs. per-person + family overlay)
+- [ ] Connect family Google Calendar to Hermes (separate from Care Bot's treatment calendar)
+- [ ] Per-profile calendar access (David sees his + family; Bridget sees hers + family)
 - [ ] Shopping list / todo via HA or Notion
 - [ ] Morning briefing cron job (per-profile delivery)
 - [ ] Kids' activities context in shared memory
