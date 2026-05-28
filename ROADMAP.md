@@ -121,7 +121,7 @@ Barkhausen Home AI
 - [ ] Expand to living room, bedroom
 
 ### Phase 5 — Recipes, Music, Proactive
-- [ ] Recipe/meal planning workflow
+- [ ] Port Skylight Calendar skills from Claude Cowork (Playwright-based: add recipe, add to meal plan, add groceries to shopping list — no Skylight API exists)
 - [ ] Room-targeted Spotify playback
 - [ ] Proactive morning briefing with weather + calendar
 - [ ] Camera-triggered delivery notifications
